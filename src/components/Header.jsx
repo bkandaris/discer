@@ -1,19 +1,23 @@
 import React from 'react';
+import { faHome, faCompactDisc } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Header = () => {
   return (
     <div className='header-wrapper'>
       <section className='header-content'>
         <div className='header-text'>
-          <h1>Home Page</h1>
-          <h3>Some description</h3>
+          <div className='header-logo'>
+            <FontAwesomeIcon className='header-icon' icon={faCompactDisc} />
+            <h1>Discer</h1>
+          </div>
+          <h3>Find people to disc golf with!</h3>
           <p>
-            here is some lengthier description about the application where users
-            can find out more aobut disc golfing and find out more about meeting
-            people here is some lengthier description about the application
-            where users can find out more aobut disc golfing and find out more
-            about meeting people
+            Ever feel like going disc golfing and your friends are all busy?
+            Maybe you just moved to a new area? Sign up today and find
+            like-minded disc golfers to enjoy the outdoors with!
           </p>
+          <button>Get Started!</button>
         </div>
       </section>
     </div>

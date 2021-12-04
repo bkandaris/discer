@@ -2,17 +2,16 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(45deg, #07e707, #333333);
+  background: linear-gradient(45deg, #1b5a1b, black);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
 .header-wrapper .header-content {
-  border: 2px solid blue;
   position: relative;
-  max-width: 100vw;
-  color: #07e707;
+  width: 100%;
+  color: #1b5a1b;
 }
 
 .header-wrapper .header-content:before {
@@ -22,20 +21,18 @@
   left: 0;
   width: 100%;
   height: 200px;
-  background: white;
+  background: black;
   -webkit-clip-path: polygon(100% 0%, 0 100%, 100% 100%);
           clip-path: polygon(100% 0%, 0 100%, 100% 100%);
 }
 
 .header-wrapper .header-text {
-  height: 20vh;
-  border: 1px solid red;
   position: relative;
-  top: 30%;
+  top: 25%;
   background: white;
   color: black;
-  width: 50%;
-  height: 30%;
+  width: 450px;
+  height: 40%;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -50,8 +47,122 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-shadow: 15px 15px black;
+          box-shadow: 15px 15px black;
+  border-radius: 5px;
+  color: #1b5a1b;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-name: slide;
+          animation-name: slide;
+}
+
+@-webkit-keyframes slide {
+  from {
+    margin-left: 0%;
+  }
+  to {
+    margin-left: 40%;
+  }
+}
+
+@keyframes slide {
+  from {
+    margin-left: 0%;
+  }
+  to {
+    margin-left: 40%;
+  }
+}
+
+.header-wrapper .header-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.header-wrapper .header-icon {
+  color: green;
+  font-size: 50px;
+  margin-right: 10px;
+  -webkit-animation-name: spin;
+          animation-name: spin;
+  -webkit-animation-duration: 1000ms;
+          animation-duration: 1000ms;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.header-wrapper h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 3.8rem;
+  letter-spacing: 0.1rem;
+}
+
+.header-wrapper h3 {
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.header-wrapper p {
+  width: 90%;
+  line-height: 1.4;
+  font-weight: 600;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header-wrapper button {
+  background-color: #1b5a1b;
+  color: white;
+  border: 1px solid #1b5a1b;
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 5px;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+}
+
+.header-wrapper button:hover {
+  background-color: black;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 * {
