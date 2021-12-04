@@ -1,0 +1,23 @@
+// // imports
+@import './navbar';
+@import './variables';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+// nest everything inside of the same element
+h1 {
+  background: $primary;
+  color: white;
+  @include flexCenter(row);
+  font: $logofont;
+  //   secondary {
+  // &:hover {
+
+  // }
+  //   }
+}

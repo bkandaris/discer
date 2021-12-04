@@ -1,9 +1,11 @@
-import './App.css';
+import './styles/style.scss';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <div>
-        <h1>App working</h1>
+      <Navbar />
+      <h1>App working</h1>
     </div>
   );
 }

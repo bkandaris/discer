@@ -1,0 +1,12 @@
+// variables
+$primary: rgb(5, 110, 5);
+$logofont: 'Gloria Hallelujah', cursive;
+
+// mixins
+
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
