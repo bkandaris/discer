@@ -1,7 +1,9 @@
-// // imports
-@import './navbar';
+// // import variables / mixins
 @import './variables';
+@import './navbar';
+@import './header';
 
+// reset and font family
 * {
   margin: 0;
   padding: 0;
@@ -10,14 +12,14 @@
 }
 
 // nest everything inside of the same element
-h1 {
-  background: $primary;
-  color: white;
-  @include flexCenter(row);
-  font: $logofont;
-  //   secondary {
-  // &:hover {
+// h1 {
+//   background: $primary;
+//   color: white;
+//   @include flexCenter(row);
+//   font: $logofont;
+//   secondary {
+// &:hover {
 
-  // }
-  //   }
-}
+// }
+//   }
+// }

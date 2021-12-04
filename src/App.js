@@ -1,11 +1,11 @@
 import './styles/style.scss';
 import Navbar from './components/Navbar';
+import Header from './components/Header';
 
 function App() {
   return (
     <div>
-      <Navbar />
-      <h1>App working</h1>
+      <Header />
     </div>
   );
 }
