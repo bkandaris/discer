@@ -1,3 +1,73 @@
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 50px;
+}
+
+nav .logo {
+  margin-left: 2%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  color: #1b5a1b;
+}
+
+nav .logo .logo-icon {
+  font-size: 30px;
+  margin-right: 5px;
+}
+
+nav .logo h3 {
+  font-family: "Dancing Script", cursive;
+  letter-spacing: 0.1rem;
+  font-size: 2.2rem;
+}
+
+nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-right: 10%;
+  color: #1b5a1b;
+  list-style: none;
+  letter-spacing: 0.1rem;
+}
+
+nav ul li {
+  padding: 5px;
+  font-weight: 700;
+}
+
+nav ul .register {
+  margin-left: 15px;
+  background: #1b5a1b;
+  color: white;
+}
+
 .header-wrapper {
   position: relative;
   width: 100%;

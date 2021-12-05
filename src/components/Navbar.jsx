@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Navbar = () => {
   return (
     <nav>
-      <div>
-        <FontAwesomeIcon className='header-icon' icon={faCompactDisc} />
+      <div className='logo'>
+        <FontAwesomeIcon className='logo-icon' icon={faCompactDisc} />
         <h3>Discer</h3>
       </div>
       <ul>
         <li>Login</li>
-        <li>Register</li>
+        <li className="register">Register</li>
       </ul>
     </nav>
   );

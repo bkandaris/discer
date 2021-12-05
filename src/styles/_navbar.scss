@@ -1,8 +1,42 @@
 @import './variables';
 
-// nav {
-//   background-color: blue;
-//   h1 {
-//     font-family: $logofont;
-//   }
-// }
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  .logo {
+    margin-left: 2%;
+    @include flexCenter(row);
+    color: $primary;
+    .logo-icon {
+      font-size: 30px;
+      margin-right: 5px;
+    }
+
+    h3 {
+      font-family: $logofont;
+      letter-spacing: 0.1rem;
+      font-size: 2.2rem;
+    }
+  }
+  ul {
+    @include flexCenter(row);
+    margin-right: 10%;
+    color: $primary;
+    list-style: none;
+    letter-spacing: 0.1rem;
+    li {
+      padding: 5px;
+      font-weight: 700;
+    }
+    .register {
+      margin-left: 15px;
+      background: $primary;
+      color: white;
+    }
+    // a {
+    //   text-decoration: none;
+    //   color: white;
+    // }
+  }
+}
