@@ -1,0 +1,77 @@
+@import './variables';
+
+.login-wrapper {
+  background: linear-gradient(45deg, $primary, white);
+  height: 100vh;
+  width: 100vw;
+  @include flexCenter(row);
+  margin: 0 auto;
+  .secondary-wrapper {
+    height: 65vh;
+    @include flexCenter(row);
+    .login-left-wrapper {
+      .login-form {
+        padding: 20px;
+        h2 {
+          font-size: 3rem;
+          margin-bottom: 15px;
+        }
+        .noaccount {
+          display: flex;
+          p {
+            margin-right: 5px;
+          }
+        }
+        form {
+          display: flex;
+          flex-direction: column;
+          label {
+            font-size: 1.7rem;
+            margin-top: 15px;
+          }
+          input {
+            margin-top: 15px;
+            font-size: 1.7rem;
+            padding: 5px;
+          }
+          button {
+            margin-top: 15px;
+            font-size: 1.7rem;
+            padding: 5px;
+            cursor: pointer;
+            background-color: $primary;
+            color: white;
+          }
+          button:hover {
+            background-color: blue;
+            color: white;
+            transition: 0.2s;
+          }
+        }
+      }
+
+      width: 50%;
+      height: 100%;
+      background: white;
+      @include flexCenter(row);
+      .login-form {
+        border: 1px solid grey;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        height: 90%;
+        width: 90%;
+      }
+    }
+    .login-right-wrapper {
+      background-color: white;
+      height: 100%;
+      width: 50%;
+      img {
+        min-height: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        background-size: cover;
+        object-fit: cover;
+      }
+    }
+  }
+}

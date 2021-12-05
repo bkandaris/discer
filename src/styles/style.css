@@ -165,6 +165,141 @@
   transition: 0.4s;
 }
 
+.login-wrapper {
+  background: linear-gradient(45deg, #1b5a1b, white);
+  height: 100vh;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 0 auto;
+}
+
+.login-wrapper .secondary-wrapper {
+  height: 65vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.login-wrapper .secondary-wrapper .login-left-wrapper {
+  width: 50%;
+  height: 100%;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.login-wrapper .secondary-wrapper .login-left-wrapper .login-form {
+  padding: 20px;
+}
+
+.login-wrapper .secondary-wrapper .login-left-wrapper .login-form h2 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.login-wrapper .secondary-wrapper .login-left-wrapper .login-form .noaccount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.login-wrapper .secondary-wrapper .login-left-wrapper .login-form .noaccount p {
+  margin-right: 5px;
+}
+
+.login-wrapper .secondary-wrapper .login-left-wrapper .login-form form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.login-wrapper .secondary-wrapper .login-left-wrapper .login-form form label {
+  font-size: 1.7rem;
+  margin-top: 15px;
+}
+
+.login-wrapper .secondary-wrapper .login-left-wrapper .login-form form input {
+  margin-top: 15px;
+  font-size: 1.7rem;
+  padding: 5px;
+}
+
+.login-wrapper .secondary-wrapper .login-left-wrapper .login-form form button {
+  margin-top: 15px;
+  font-size: 1.7rem;
+  padding: 5px;
+  cursor: pointer;
+  background-color: #1b5a1b;
+  color: white;
+}
+
+.login-wrapper .secondary-wrapper .login-left-wrapper .login-form form button:hover {
+  background-color: blue;
+  color: white;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.login-wrapper .secondary-wrapper .login-left-wrapper .login-form {
+  border: 1px solid grey;
+  -webkit-box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  height: 90%;
+  width: 90%;
+}
+
+.login-wrapper .secondary-wrapper .login-right-wrapper {
+  background-color: white;
+  height: 100%;
+  width: 50%;
+}
+
+.login-wrapper .secondary-wrapper .login-right-wrapper img {
+  min-height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  background-size: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 * {
   margin: 0;
   padding: 0;
