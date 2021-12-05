@@ -1,12 +1,29 @@
 import React, { useState, useRef } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const Login = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('handle later');
+    const user = {
+      username: usernameRef.current.value,
+      password: passwordRef.current.value,
+    };
+
+    axios
+      .post('http://localhost:5000/api/user/login', user)
+      .then((res) => {
+        console.log(res);
+        window.localStorage.setItem('token', res.data.token);
+        navigate('/home');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -15,7 +32,7 @@ const Login = () => {
         <div className='login-left-wrapper'>
           <div className='login-form'>
             <h2>Login</h2>
-            <div className="noaccount">
+            <div className='noaccount'>
               <p>Don't have an account yet?</p>
               <p>Sign Up</p>
             </div>

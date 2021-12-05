@@ -3,7 +3,7 @@ import './styles/style.scss';
 // import Header from './components/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-// import Login from './components/Login';
+import Login from './components/Login';
 import Home from './pages/Home';
 import { PrivateRoute } from './auth/PrivateRoute';
 
@@ -13,6 +13,7 @@ function App() {
       <div>
         <Navbar />
         <Routes>
+          <Route path='/login' element={<Login />} />
           <Route
             path='/home'
             element={
