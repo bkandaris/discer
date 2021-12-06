@@ -2,8 +2,13 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUser } from '../redux/actions';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const { username, _id, isAdmin, email, phone, profilePicture, skill } =
+    useSelector((state) => state);
   const usernameRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
@@ -22,6 +27,9 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         window.localStorage.setItem('token', res.data.token);
+        dispatch(
+          updateUser({ username: res.data.username, _id: res.data._id })
+        );
         navigate('/home');
       })
       .catch((err) => {

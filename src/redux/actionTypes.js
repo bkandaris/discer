@@ -1,1 +1,2 @@
-export const ACTION_TYPE = 'ACTION_TYPE';
+export const UPDATE_USER = 'UPDATE_USER';
+export const PROFILE_UPDATE = 'PROFILE_UPDATE';
