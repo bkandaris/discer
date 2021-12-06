@@ -4,7 +4,9 @@ import './styles/style.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
+import Register from './components/Register';
 import Home from './pages/Home';
+import UpdateProfile from './components/UpdateProfile';
 import { PrivateRoute } from './auth/PrivateRoute';
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/updateprofile' element={<UpdateProfile />} />
           <Route
             path='/home'
             element={
