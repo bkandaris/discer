@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUser } from '../redux/actions';
+import { loginUser } from '../redux/actions';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -28,7 +28,13 @@ const Login = () => {
         console.log(res);
         window.localStorage.setItem('token', res.data.token);
         dispatch(
-          updateUser({ username: res.data.username, _id: res.data._id })
+          loginUser({
+            username: res.data.username,
+            _id: res.data._id,
+            phone: res.data.phone,
+            email: res.data.email,
+            skill: res.data.skill,
+          })
         );
         navigate('/home');
       })

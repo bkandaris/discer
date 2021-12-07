@@ -1,4 +1,4 @@
-import { UPDATE_USER, PROFILE_UPDATE } from './actionTypes';
+import { REGISTER_USER, LOGIN_USER, UPDATE_USER } from './actionTypes';
 
 const initialState = {
   username: null,
@@ -13,22 +13,31 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_USER: {
-      return {
-        ...state,
-        _id: action.payload._id,
-        username: action.payload.username,
-        isLoggedIn: true,
-      };
-    }
-    case PROFILE_UPDATE: {
+    case REGISTER_USER: {
       return {
         ...state,
         username: action.payload.username,
         email: action.payload.email,
-        phone: action.payload.phone,
-        profilePicture: action.payload.profilePicture,
+        _id: action.payload._id,
+        isLoggedIn: action.payload.isLoggedIn,
+      };
+    }
+    case LOGIN_USER: {
+      return {
+        username: action.payload.username,
+        _id: action.payload._id,
+        isLoggedIn: true,
+        email: action.payload.email,
         skill: action.payload.skill,
+        phone: action.payload.phone,
+      };
+    }
+    case UPDATE_USER: {
+      return {
+        ...state,
+        email: action.payload.email,
+        skill: action.payload.skill,
+        phone: action.payload.phone,
       };
     }
     default:

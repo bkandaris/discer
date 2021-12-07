@@ -2,8 +2,12 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { registerUser } from '../redux/actions';
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const { username, _id, email, phone } = useSelector((state) => state);
   const usernameRef = useRef();
   const passwordRef = useRef();
   const emailRef = useRef();
@@ -22,8 +26,17 @@ const Register = () => {
     axios
       .post('https://discer.herokuapp.com/api/user/register', user)
       .then((res) => {
-        console.log(res);
-        navigate('/profile');
+        dispatch(
+          registerUser({
+            username: res.data.username,
+            _id: res.data._id,
+            email: res.data.email,
+            isLoggedIn: true,
+          })
+        );
+        console.log('response from registering', res);
+        // need to change to login
+        navigate('/login');
       })
       .catch((err) => {
         setErrorHandler(true);
