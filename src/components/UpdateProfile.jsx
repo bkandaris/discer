@@ -4,28 +4,45 @@ import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../redux/actions';
 import axios from 'axios';
-import FileBase64 from 'react-file-base64';
 
 const UpdateProfile = () => {
-  const { username, _id, email, phone, profilePicture, skill } = useSelector(
-    (state) => state
-  );
+  const {
+    username,
+    _id,
+    email,
+    phone,
+    profilePicture,
+    skill,
+    isAdmin,
+    isLoggedIn,
+  } = useSelector((state) => state);
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
-  const [profPic, setProfPic] = useState(profilePicture);
+  const [imageSelected, setImageSelected] = useState('');
+  const [profilePic, setProfilePic] = useState();
+
   // form state
   const [emailState, setEmailState] = useState(email);
   const [phoneState, setPhoneState] = useState(phone);
   const [skillState, setSkillState] = useState(skill);
-  console.log('phoneState', phoneState);
-  console.log('emailState', emailState);
-  console.log('skillState', skillState);
 
-  // const addImage = (upload) => {
-  //   setProfPic(upload);
-  // };
+  const uploadImage = () => {
+    const formData = new FormData();
+    formData.append('file', imageSelected);
+    formData.append('upload_preset', 'discer');
 
+    axios
+      .post('https://api.cloudinary.com/v1_1/dstpsp6l4/image/upload', formData)
+      .then((res) => {
+        console.log(res);
+        setProfilePic(res.data.secure_url);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  console.log('imageSelected', imageSelected);
   const handleSubmit = (e) => {
     const user = {
       email: emailState,
@@ -34,6 +51,10 @@ const UpdateProfile = () => {
     };
     dispatch(
       updateUser({
+        username: username,
+        _id: _id,
+        isAdmin: isAdmin,
+        isLoggedIn: isLoggedIn,
         email: user.email,
         phone: user.phone,
         skill: user.skill,
@@ -56,23 +77,16 @@ const UpdateProfile = () => {
         <h1>{username}</h1>
         <h3>Change or add information to your profile!</h3>
       </div>
+      <input
+        type='file'
+        onChange={(e) => {
+          setImageSelected(e.target.files[0]);
+        }}
+      />
+      <button onClick={uploadImage}>Upload Image</button>
+      <img src={profilePic} alt='' />
       <form onSubmit={handleSubmit}>
         <div>
-          {/* <FileBase64
-            multiple={false}
-            onDone={(base64) => {
-              addImage(base64);
-            }}
-          />
-          <img
-            style={{ maxHeight: '100px' }}
-            src={
-              profPic
-                ? profPic.base64
-                : 'https://i.gyazo.com/e645f17b9d3ae42a51e3247dd0be8473.png'
-            }
-            alt='profile pic'
-          /> */}
           <label>E-mail</label>
           <p>EMAIL: {email}</p>
           <input

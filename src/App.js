@@ -8,12 +8,14 @@ import Register from './components/Register';
 import Home from './pages/Home';
 import UpdateProfile from './components/UpdateProfile';
 import { PrivateRoute } from './auth/PrivateRoute';
+// import ImageCode from './components/ImageCode';
 
 function App() {
   return (
     <Router>
       <div>
         <Navbar />
+        {/* <ImageCode /> */}
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
