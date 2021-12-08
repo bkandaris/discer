@@ -6,9 +6,9 @@ const initialState = {
   isAdmin: null,
   email: null,
   phone: null,
-  profilePicture: null,
   skill: null,
   isLoggedIn: false,
+  profilePicture: 'something here',
 };
 
 const reducer = (state = initialState, action) => {

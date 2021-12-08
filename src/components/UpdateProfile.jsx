@@ -3,29 +3,38 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../redux/actions';
+// import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 
 const UpdateProfile = () => {
-  const {
-    username,
-    _id,
-    email,
-    phone,
-    profilePicture,
-    skill,
-    isAdmin,
-    isLoggedIn,
-  } = useSelector((state) => state);
+  const { username, _id, email, phone, skill, isAdmin, isLoggedIn } =
+    useSelector((state) => state);
+
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
   const [imageSelected, setImageSelected] = useState('');
   const [profilePic, setProfilePic] = useState();
+  const [userInfo, setuserInfo] = useState(null);
+  console.log('userInfo State', userInfo);
 
   // form state
   const [emailState, setEmailState] = useState(email);
   const [phoneState, setPhoneState] = useState(phone);
   const [skillState, setSkillState] = useState(skill);
+
+  useEffect(() => {
+    axios
+      .get(`https://discer.herokuapp.com/api/user/find/${_id}`)
+      .then((res) => {
+        console.log('get user res', res);
+        setuserInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [_id]);
 
   const uploadImage = () => {
     const formData = new FormData();
@@ -35,20 +44,24 @@ const UpdateProfile = () => {
     axios
       .post('https://api.cloudinary.com/v1_1/dstpsp6l4/image/upload', formData)
       .then((res) => {
-        console.log(res);
-        setProfilePic(res.data.secure_url);
+        let ourPic = res.data.secure_url;
+        console.log('ourPic', ourPic);
+        setProfilePic(ourPic);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  console.log('profilePic', profilePic);
   console.log('imageSelected', imageSelected);
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     const user = {
       email: emailState,
       phone: phoneState,
       skill: skillState,
+      profilePicture: profilePic,
     };
+    console.log('user object', user);
     dispatch(
       updateUser({
         username: username,
@@ -58,6 +71,7 @@ const UpdateProfile = () => {
         email: user.email,
         phone: user.phone,
         skill: user.skill,
+        profilePicture: profilePic,
       })
     );
     navigate('/home');
@@ -71,10 +85,14 @@ const UpdateProfile = () => {
         console.log(err);
       });
   };
+
+  if (!userInfo) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <div>
       <div>
-        <h1>{username}</h1>
+        <h1>{userInfo.username}</h1>
         <h3>Change or add information to your profile!</h3>
       </div>
       <input
@@ -84,14 +102,22 @@ const UpdateProfile = () => {
         }}
       />
       <button onClick={uploadImage}>Upload Image</button>
-      <img src={profilePic} alt='' />
+      {userInfo.profilePicture && !profilePic ? (
+        <img
+          style={{ height: 100 }}
+          src={userInfo.profilePicture}
+          alt='profile'
+        />
+      ) : (
+        <img style={{ height: 100 }} src={profilePic} alt='profile' />
+      )}
       <form onSubmit={handleSubmit}>
         <div>
           <label>E-mail</label>
-          <p>EMAIL: {email}</p>
+          <p>EMAIL: {userInfo.email}</p>
           <input
             onChange={(e) => setEmailState(e.target.value)}
-            placeholder={email ? email : 'email'}
+            placeholder={userInfo.email ? userInfo.email : 'email'}
             type='email'
             name='email'
           />
@@ -99,13 +125,16 @@ const UpdateProfile = () => {
           <p>PHONE: {phone}</p>
           <input
             onChange={(e) => setPhoneState(e.target.value)}
-            placeholder={phone ? phone : 'phone number'}
+            placeholder={userInfo.phone ? userInfo.phone : 'phone number'}
             type='tel'
             name='phone'
           />
           <label>Skill Level</label>
           <p>SKILL: {skill}</p>
-          <select name='skill' onChange={(e) => setSkillState(e.target.value)}>
+          <select
+            selected={userInfo.skill}
+            name='skill'
+            onChange={(e) => setSkillState(e.target.value)}>
             <option value='skill'>{skill ? skill : null}</option>
             <option value='Beginner'>Beginner</option>
             <option value='Intermediate'>Intermediate</option>
