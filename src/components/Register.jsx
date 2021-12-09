@@ -36,7 +36,7 @@ const Register = () => {
         );
         console.log('response from registering', res);
         // need to change to login
-        navigate('/login');
+        navigate(`/updateprofile/${_id}`);
       })
       .catch((err) => {
         setErrorHandler(true);

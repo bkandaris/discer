@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { profileUpdate } from '../redux/actions';
 import { useNavigate } from 'react-router';
 
-const Home = () => {
+const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { _id } = useSelector((state) => state);
@@ -34,4 +34,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

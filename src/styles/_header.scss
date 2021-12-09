@@ -100,6 +100,13 @@
     letter-spacing: 0.1rem;
     cursor: pointer;
   }
+  button > a {
+    text-decoration: none;
+    color: white;
+  }
+  button > a:hover {
+    color: white;
+  }
   button:hover {
     background-color: black;
     transition: 0.4s;

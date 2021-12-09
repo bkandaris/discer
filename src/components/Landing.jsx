@@ -1,8 +1,11 @@
 import React from 'react';
 import { faHome, faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Landing = () => {
+  const navigate = useNavigate();
   return (
     <div className='header-wrapper'>
       <section className='header-content'>
@@ -17,11 +20,13 @@ const Header = () => {
             Maybe you just moved to a new area? Sign up today and find
             like-minded disc golfers to enjoy the outdoors with!
           </p>
-          <button>Get Started!</button>
+          <button>
+            <Link to='/register'>Get Started!</Link>
+          </button>
         </div>
       </section>
     </div>
   );
 };
 
-export default Header;
+export default Landing;

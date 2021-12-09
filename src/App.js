@@ -5,26 +5,34 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Register from './components/Register';
-import Home from './pages/Home';
+import Home from './pages/HomePage';
 import UpdateProfile from './components/UpdateProfile';
 import { PrivateRoute } from './auth/PrivateRoute';
-// import ImageCode from './components/ImageCode';
+import HomePage from './pages/HomePage';
+import Landing from './components/Landing';
 
 function App() {
   return (
     <Router>
       <div>
         <Navbar />
-        {/* <ImageCode /> */}
         <Routes>
+          <Route path='/' element={<Landing />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/updateprofile/:userId' element={<UpdateProfile />} />
+          <Route
+            path='/updateprofile/:userId'
+            element={
+              <PrivateRoute>
+                <UpdateProfile />
+              </PrivateRoute>
+            }
+          />
           <Route
             path='/home'
             element={
               <PrivateRoute>
-                <Home />
+                <HomePage />
               </PrivateRoute>
             }
           />
