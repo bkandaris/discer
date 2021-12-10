@@ -71,7 +71,6 @@ const UpdateProfile = () => {
         email: user.email,
         phone: user.phone,
         skill: user.skill,
-        profilePicture: profilePic,
       })
     );
     navigate('/home');
@@ -92,8 +91,8 @@ const UpdateProfile = () => {
   return (
     <div>
       <div>
-        <h1>{userInfo.username}</h1>
-        <h3>Change or add information to your profile!</h3>
+        <h1>Welcome, {userInfo.username}!</h1>
+        <h3>Let's finish your profile!</h3>
       </div>
       <input
         type='file'
@@ -114,7 +113,6 @@ const UpdateProfile = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>E-mail</label>
-          <p>EMAIL: {userInfo.email}</p>
           <input
             onChange={(e) => setEmailState(e.target.value)}
             placeholder={userInfo.email ? userInfo.email : 'email'}
@@ -122,7 +120,6 @@ const UpdateProfile = () => {
             name='email'
           />
           <label>Phone Number</label>
-          <p>PHONE: {phone}</p>
           <input
             onChange={(e) => setPhoneState(e.target.value)}
             placeholder={userInfo.phone ? userInfo.phone : 'phone number'}
@@ -130,7 +127,6 @@ const UpdateProfile = () => {
             name='phone'
           />
           <label>Skill Level</label>
-          <p>SKILL: {skill}</p>
           <select
             selected={userInfo.skill}
             name='skill'

@@ -4,10 +4,14 @@ nav {
   display: flex;
   justify-content: space-between;
   height: 50px;
+  a {
+    text-decoration: none;
+  }
   .logo {
     margin-left: 2%;
     @include flexCenter(row);
     color: $primary;
+
     .logo-icon {
       font-size: 30px;
       margin-right: 5px;
@@ -34,10 +38,10 @@ nav {
       background: $primary;
       color: white;
     }
-    // a {
-    //   text-decoration: none;
-    //   color: white;
-    // }
+    a {
+      text-decoration: none;
+      color: green;
+    }
   }
 }
 

@@ -1,23 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 const Navbar = () => {
-  const [loggedIn, setIsLoggedIn] = useState(true);
-  const [username, setuserName] = useState('Benjammin');
+  const [loggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, username, _id } = useSelector((state) => state);
+  const [user, setUser] = useState({
+    username: null,
+    profilePicture: null,
+  });
+
+  useEffect(() => {
+    axios
+      .get(`https://discer.herokuapp.com/api/user/find/${_id}`)
+      .then((res) => {
+        setUser({
+          username: res.data.username,
+          profilePicture: res.data.profilePicture,
+        }).catch((err) => {
+          console.log(err);
+        });
+      });
+  }, []);
+  console.log('user', user);
 
   return (
     <nav>
-      <div className='logo'>
-        <FontAwesomeIcon className='logo-icon' icon={faCompactDisc} />
-        <h3>Discer</h3>
-      </div>
-      {loggedIn ? (
-        <h3>Logged in</h3>
+      <Link className='navlink' to='/home'>
+        <div className='logo'>
+          <FontAwesomeIcon className='logo-icon' icon={faCompactDisc} />
+          <h3>Discer</h3>
+        </div>
+      </Link>
+      {isLoggedIn ? (
+        <div>
+          <h3>Hi, {username}!</h3>
+          <img src={user.profilePicture} href='profile' />
+        </div>
       ) : (
         <ul>
-          <li>Login</li>
-          <li className='register'>Register</li>
+          <Link to='login'>
+            <li>Login</li>
+          </Link>
+          <Link to='/register'>
+            <li className='register'>Register</li>
+          </Link>
         </ul>
       )}
     </nav>
