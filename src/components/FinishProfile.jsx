@@ -69,14 +69,14 @@ const FinishProfile = () => {
     const phoneErr = {};
     const skillErr = {};
     let isValid = true;
-
+    console.log('handleValidation', isValid);
     if (formState.phone.length < 7) {
       phoneErr.phone_numberInvalid = 'Please enter a valid phone number.';
       isValid = false;
     }
 
     if (formState.skill.length < 2) {
-      skillErr.skillInvalid = 'Please enter a valid e-mail.';
+      skillErr.skillInvalid = 'Please enter a skill level.';
       isValid = false;
     }
 
@@ -89,6 +89,7 @@ const FinishProfile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid = handleValidation();
+    console.log('handleSubmit isValid', isValid);
     if (isValid) {
       const user = {
         phone: formState.phone,
@@ -111,8 +112,8 @@ const FinishProfile = () => {
         .catch((err) => {
           console.log(err);
         });
+      navigate('/login');
     }
-    navigate('/login');
   };
 
   return (

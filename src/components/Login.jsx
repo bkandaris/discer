@@ -34,6 +34,7 @@ const Login = () => {
             phone: res.data.phone,
             email: res.data.email,
             skill: res.data.skill,
+            profilePicture: res.data.profilePicture,
           })
         );
         navigate('/home');

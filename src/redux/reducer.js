@@ -52,9 +52,9 @@ const reducer = (state = initialState, action) => {
     case FINISH_PROFILE: {
       return {
         ...state,
-        profilePicture: action.payload.profilePicture,
         phone: action.payload.phone,
         skill: action.payload.skill,
+        profilePicture: action.payload.profilePicture,
       };
     }
     default:
