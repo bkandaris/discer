@@ -10,6 +10,8 @@ import UpdateProfile from './components/UpdateProfile';
 import { PrivateRoute } from './auth/PrivateRoute';
 import HomePage from './pages/HomePage';
 import Landing from './components/Landing';
+import FinishProfile from './components/FinishProfile';
+
 
 function App() {
   return (

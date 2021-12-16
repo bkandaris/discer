@@ -14,19 +14,19 @@ const Navbar = () => {
     profilePicture: null,
   });
 
-  useEffect(() => {
-    axios
-      .get(`https://discer.herokuapp.com/api/user/find/${_id}`)
-      .then((res) => {
-        setUser({
-          username: res.data.username,
-          profilePicture: res.data.profilePicture,
-        }).catch((err) => {
-          console.log(err);
-        });
-      });
-  }, []);
-  console.log('user', user);
+  // useEffect(() => {
+  //   axios
+  //     .get(`https://discer.herokuapp.com/api/user/find/${_id}`)
+  //     .then((res) => {
+  //       setUser({
+  //         username: res.data.username,
+  //         profilePicture: res.data.profilePicture,
+  //       }).catch((err) => {
+  //         console.log(err);
+  //       });
+  //     });
+  // }, []);
+
 
   return (
     <nav>
