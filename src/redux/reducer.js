@@ -1,4 +1,9 @@
-import { REGISTER_USER, LOGIN_USER, UPDATE_USER } from './actionTypes';
+import {
+  REGISTER_USER,
+  LOGIN_USER,
+  UPDATE_USER,
+  FINISH_PROFILE,
+} from './actionTypes';
 
 const initialState = {
   username: null,
@@ -42,6 +47,14 @@ const reducer = (state = initialState, action) => {
         email: action.payload.email,
         skill: action.payload.skill,
         phone: action.payload.phone,
+      };
+    }
+    case FINISH_PROFILE: {
+      return {
+        ...state,
+        profilePicture: action.payload.profilePicture,
+        phone: action.payload.phone,
+        skill: action.payload.skill,
       };
     }
     default:

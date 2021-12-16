@@ -31,7 +31,6 @@ const Register = () => {
             username: res.data.username,
             _id: res.data._id,
             email: res.data.email,
-            isLoggedIn: true,
           })
         );
         navigate(`/finishprofile`);

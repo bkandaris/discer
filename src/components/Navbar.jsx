@@ -8,10 +8,12 @@ import { useParams } from 'react-router-dom';
 
 const Navbar = () => {
   const [loggedIn, setIsLoggedIn] = useState(false);
-  const { isLoggedIn, username, _id } = useSelector((state) => state);
+  const { isLoggedIn, username, _id, profilePicture } = useSelector(
+    (state) => state
+  );
   const [user, setUser] = useState({
-    username: null,
-    profilePicture: null,
+    username: username || null,
+    profilePicture: profilePicture || null,
   });
 
   // useEffect(() => {
@@ -27,7 +29,6 @@ const Navbar = () => {
   //     });
   // }, []);
 
-
   return (
     <nav>
       <Link className='navlink' to='/home'>
@@ -39,7 +40,10 @@ const Navbar = () => {
       {isLoggedIn ? (
         <div>
           <h3>Hi, {username}!</h3>
-          <img src={user.profilePicture} href='profile' />
+          <img src={profilePicture} href='profile' />
+          <button>
+            Logout
+          </button>
         </div>
       ) : (
         <ul>

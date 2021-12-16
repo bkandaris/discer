@@ -1,4 +1,4 @@
-import { REGISTER_USER, LOGIN_USER, UPDATE_USER } from './actionTypes';
+import { REGISTER_USER, LOGIN_USER, FINISH_PROFILE } from './actionTypes';
 
 export const registerUser = (payload) => ({
   type: REGISTER_USER,
@@ -12,5 +12,10 @@ export const loginUser = (payload) => ({
 
 export const updateUser = (payload) => ({
   type: LOGIN_USER,
+  payload,
+});
+
+export const finishProfile = (payload) => ({
+  type: FINISH_PROFILE,
   payload,
 });
