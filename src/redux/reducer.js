@@ -4,11 +4,11 @@ const initialState = {
   username: null,
   _id: null,
   isAdmin: null,
-  email: null,
+  email: '',
   phone: null,
   skill: null,
   isLoggedIn: false,
-  profilePicture: 'something here',
+  profilePicture: 'https://i.gyazo.com/ee20fb12aa6d4b721c8fccc5baed44f5.png',
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,8 +18,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         username: action.payload.username,
         email: action.payload.email,
+        phone: action.payload.phone,
         _id: action.payload._id,
         isLoggedIn: action.payload.isLoggedIn,
+        profilePicture: action.payload.profilePicture,
       };
     }
     case LOGIN_USER: {
@@ -31,6 +33,7 @@ const reducer = (state = initialState, action) => {
         email: action.payload.email,
         skill: action.payload.skill,
         phone: action.payload.phone,
+        profilePicture: action.payload.profilePicture,
       };
     }
     case UPDATE_USER: {

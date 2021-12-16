@@ -12,7 +12,6 @@ import HomePage from './pages/HomePage';
 import Landing from './components/Landing';
 import FinishProfile from './components/FinishProfile';
 
-
 function App() {
   return (
     <Router>
@@ -22,6 +21,7 @@ function App() {
           <Route path='/' element={<Landing />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/finishprofile' element={<FinishProfile />} />
           <Route
             path='/updateprofile/:userId'
             element={

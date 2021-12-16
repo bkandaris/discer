@@ -34,9 +34,7 @@ const Register = () => {
             isLoggedIn: true,
           })
         );
-        console.log('response from registering', res);
-        // need to change to login
-        navigate(`/updateprofile/${_id}`);
+        navigate(`/finishprofile`);
       })
       .catch((err) => {
         setErrorHandler(true);
