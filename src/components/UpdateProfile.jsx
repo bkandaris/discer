@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../redux/actions';
-// import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 
 const UpdateProfile = () => {
@@ -23,6 +23,40 @@ const UpdateProfile = () => {
   const [emailState, setEmailState] = useState(email);
   const [phoneState, setPhoneState] = useState(phone);
   const [skillState, setSkillState] = useState(skill);
+  // Error Handling
+  const [phoneErr, setPhoneErr] = useState({});
+  const [emailErr, setEmailErr] = useState({});
+  const [skillErr, setSkillErr] = useState({});
+
+  // email, phoneNumber, skill
+
+  const handleValidation = () => {
+    const phoneErr = {};
+    const skillErr = {};
+    const emailErr = {};
+    let isValid = true;
+    console.log('handleValidation', isValid);
+    if (phoneState.length < 7) {
+      phoneErr.phone_numberInvalid = 'Please enter a valid phone number.';
+      isValid = false;
+    }
+
+    if (!emailState.includes('@')) {
+      emailErr.user_emailInvalid = 'Please enter a valid e-mail.';
+      isValid = false;
+    }
+
+    if (skillState.length < 2) {
+      skillErr.skillInvalid = 'Please enter a skill level.';
+      isValid = false;
+    }
+
+    setPhoneErr(phoneErr);
+    setEmailErr(emailErr);
+    setSkillErr(skillErr);
+
+    return isValid;
+  };
 
   useEffect(() => {
     axios
@@ -54,35 +88,39 @@ const UpdateProfile = () => {
   };
   console.log('profilePic', profilePic);
   console.log('imageSelected', imageSelected);
-  const handleSubmit = () => {
-    const user = {
-      email: emailState,
-      phone: phoneState,
-      skill: skillState,
-      profilePicture: profilePic,
-    };
-    console.log('user object', user);
-    dispatch(
-      updateUser({
-        username: username,
-        _id: _id,
-        isAdmin: isAdmin,
-        isLoggedIn: isLoggedIn,
-        email: user.email,
-        phone: user.phone,
-        skill: user.skill,
-      })
-    );
-    navigate('/home');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isValid = handleValidation();
+    if (isValid) {
+      const user = {
+        email: emailState,
+        phone: phoneState,
+        skill: skillState,
+        profilePicture: profilePic,
+      };
+      console.log('user object', user);
+      dispatch(
+        updateUser({
+          username: username,
+          _id: _id,
+          isAdmin: isAdmin,
+          isLoggedIn: isLoggedIn,
+          email: user.email,
+          phone: user.phone,
+          skill: user.skill,
+        })
+      );
+      navigate('/home');
 
-    axios
-      .put(`https://discer.herokuapp.com/api/user/updateuser/${_id}`, user)
-      .then((res) => {
-        console.log('profileUpdate call res', res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      axios
+        .put(`https://discer.herokuapp.com/api/user/updateuser/${_id}`, user)
+        .then((res) => {
+          console.log('profileUpdate call res', res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   if (!userInfo) {
@@ -92,7 +130,8 @@ const UpdateProfile = () => {
     <div>
       <div>
         <h1>Welcome, {userInfo.username}!</h1>
-        <h3>Let's finish your profile!</h3>
+        <h3>Let's update your profile!</h3>
+        {/* <FontAwesomeIcon className='logo-icon' icon={faEdit} /> */}
       </div>
       <input
         type='file'
@@ -119,6 +158,9 @@ const UpdateProfile = () => {
             type='email'
             name='email'
           />
+          {Object.keys(emailErr).map((key) => {
+            return <p style={{ color: 'red' }}>{emailErr[key]}</p>;
+          })}
           <label>Phone Number</label>
           <input
             onChange={(e) => setPhoneState(e.target.value)}
@@ -126,6 +168,9 @@ const UpdateProfile = () => {
             type='tel'
             name='phone'
           />
+          {Object.keys(phoneErr).map((key) => {
+            return <p style={{ color: 'red' }}>{phoneErr[key]}</p>;
+          })}
           <label>Skill Level</label>
           <select
             selected={userInfo.skill}
@@ -136,6 +181,9 @@ const UpdateProfile = () => {
             <option value='Intermediate'>Intermediate</option>
             <option value='Pro'>Pro</option>
           </select>
+          {Object.keys(skillErr).map((key) => {
+            return <p style={{ color: 'red' }}>{skillErr[key]}</p>;
+          })}
         </div>
         <button>Update User</button>
       </form>
