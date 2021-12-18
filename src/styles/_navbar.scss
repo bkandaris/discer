@@ -52,3 +52,35 @@ nav {
   font-weight: 500;
   text-align: center;
 }
+
+.right-nav {
+  margin-right: 8%;
+  @include flexCenter(row);
+  width: 300px;
+  img {
+    max-height: 50px;
+    margin-right: 1%;
+  }
+  h3 {
+    margin: 0px 10px;
+  }
+  button {
+    margin-left: 1%;
+    margin-left: 15px;
+    background: red;
+    color: white;
+    padding: 5px;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+    border: 1px solid red;
+  }
+  button:hover {
+    background-color: white;
+    color: red;
+    transition: 0.2s;
+    border: 1px solid red;
+  }
+}

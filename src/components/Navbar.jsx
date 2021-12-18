@@ -3,8 +3,10 @@ import axios from 'axios';
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../redux/actions';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const Navbar = () => {
   const [loggedIn, setIsLoggedIn] = useState(false);
@@ -15,6 +17,14 @@ const Navbar = () => {
     username: username || null,
     profilePicture: profilePicture || null,
   });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(logoutUser());
+    localStorage.clear();
+    navigate('/');
+  };
 
   // useEffect(() => {
   //   axios
@@ -38,12 +48,10 @@ const Navbar = () => {
         </div>
       </Link>
       {isLoggedIn ? (
-        <div>
+        <div className='right-nav'>
+          <img src={profilePicture} alt='avatar' />
           <h3>Hi, {username}!</h3>
-          <img src={profilePicture} href='profile' />
-          <button>
-            Logout
-          </button>
+          <button onClick={logout}>Logout</button>
         </div>
       ) : (
         <ul>

@@ -1,6 +1,7 @@
 import {
   REGISTER_USER,
   LOGIN_USER,
+  LOGOUT_USER,
   UPDATE_USER,
   FINISH_PROFILE,
 } from './actionTypes';
@@ -39,6 +40,11 @@ const reducer = (state = initialState, action) => {
         skill: action.payload.skill,
         phone: action.payload.phone,
         profilePicture: action.payload.profilePicture,
+      };
+    }
+    case LOGOUT_USER: {
+      return {
+        initialState,
       };
     }
     case UPDATE_USER: {
