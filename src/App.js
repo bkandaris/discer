@@ -11,6 +11,7 @@ import { PrivateRoute } from './auth/PrivateRoute';
 import HomePage from './pages/HomePage';
 import Landing from './components/Landing';
 import FinishProfile from './components/FinishProfile';
+import AddCourse from './components/AddCourse';
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Landing />} />
+          <Route path='/' element={<AddCourse />} />
+          {/* <Route path='/' element={<Landing />} /> */}
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/finishprofile' element={<FinishProfile />} />
