@@ -2,47 +2,30 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // import { useSelector, useDispatch } from 'react-redux';
 // import { finishProfile } from '../redux/actions';
-// import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const AddCourse = () => {
   const [imageSelected, setImageSelected] = useState(null);
-  const [userInfo, setUserInfo] = useState(null);
+  const [courseName, setCourseName] = useState('');
+  console.log('courseName State', courseName);
+  const [courseAddress, setCourseAddress] = useState('');
+  console.log('courseAddress State', courseAddress);
+  const [courseState, setCourseState] = useState('');
+  console.log('courseState state', courseState);
+  const [courseCity, setCourseCity] = useState('');
+  console.log('courseCity state', courseCity);
+  const [courseDescription, setCourseDescription] = useState('');
+  console.log('courseDescription State', courseDescription);
+
   const [coursePic, setCoursePic] = useState(null);
+  const navigate = useNavigate();
 
-  const [updateUser, setUpdateUser] = useState(null);
-//   const { username, _id, email, phone, skill, profilePicture } = useSelector(
-//     (state) => state
-//   );
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-  const [phoneErr, setPhoneErr] = useState({});
-  const [skillErr, setSkillErr] = useState({});
+  const [nameErr, setNameErr] = useState({});
+  const [addressErr, setAddressErr] = useState({});
+  const [cityErr, setCityErr] = useState({});
+  const [stateErr, setStateErr] = useState({});
 
-  const [formState, setFormState] = useState({
-    phone: '',
-    skill: '',
-  });
-  console.log('formstate', formState);
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setFormState({
-      ...formState,
-      [e.target.name]: value,
-    });
-  };
   console.log('imageSelected', imageSelected);
-  // useEffect(() => {
-  //   axios
-  //     .get(`https://discer.herokuapp.com/api/user/find/${_id}`)
-  //     .then((res) => {
-  //       console.log('get user res', res);
-  //       setUserInfo(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [_id]);
 
   const uploadImage = () => {
     const formData = new FormData();
@@ -60,62 +43,84 @@ const AddCourse = () => {
         console.log(err);
       });
   };
+
   console.log(coursePic);
-  //
-  //   const handleValidation = () => {
-  //     const phoneErr = {};
-  //     const skillErr = {};
-  //     let isValid = true;
-  //     console.log('handleValidation', isValid);
-  //     if (formState.phone.length < 7) {
-  //       phoneErr.phone_numberInvalid = 'Please enter a valid phone number.';
-  //       isValid = false;
-  //     }
 
-  //     if (formState.skill.length < 2) {
-  //       skillErr.skillInvalid = 'Please enter a skill level.';
-  //       isValid = false;
-  //     }
+  const handleValidation = () => {
+    const nameErr = {};
+    const addressErr = {};
+    const cityErr = {};
+    const stateErr = {};
 
-  //     setPhoneErr(phoneErr);
-  //     setSkillErr(skillErr);
+    let isValid = true;
+    console.log('handleValidation', isValid);
+    if (courseName.length < 4) {
+      nameErr.course_nameInvalid = 'Please enter a valid course name.';
+      isValid = false;
+    }
 
-  //     return isValid;
-  //   };
+    if (courseAddress.length < 6) {
+      addressErr.addressInvalid = 'Please enter a valid address.';
+      isValid = false;
+    }
+    if (courseCity.length < 3) {
+      cityErr.city_Invalid = 'Please enter a valid city.';
+      isValid = false;
+    }
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     const isValid = handleValidation();
-  //     console.log('handleSubmit isValid', isValid);
-  //     if (isValid) {
-  //       const user = {
-  //         phone: formState.phone,
-  //         skill: formState.skill,
-  //         profilePicture: profilePic,
-  //       };
-  //       dispatch(
-  //         finishProfile({
-  //           phone: user.phone,
-  //           skill: user.skill,
-  //           profilePicture: profilePic,
-  //         })
-  //       );
+    if (courseState.length < 2) {
+      stateErr.course_StateInvalid = 'Please choose a state.';
+      isValid = false;
+    }
 
-  //       axios
-  //         .put(`https://discer.herokuapp.com/api/user/updateuser/${_id}`, user)
-  //         .then((res) => {
-  //           console.log('profileUpdate call res', res);
-  //         })
-  //         .catch((err) => {
-  //           console.log(err);
-  //         });
-  //       navigate('/login');
-  //     }
-  //   };
+    setNameErr(nameErr);
+    setAddressErr(addressErr);
+    setCityErr(cityErr);
+    setStateErr(stateErr);
 
+    return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isValid = handleValidation();
+    console.log('handleSubmit isValid', isValid);
+    if (isValid) {
+      const newCourse = {
+        courseName: courseName,
+        courseAddress: courseAddress,
+        courseCity: courseCity,
+        courseState: courseState,
+        description: courseDescription,
+        coursePicture: coursePic,
+      };
+      console.log('newCourse', newCourse);
+
+      axios
+        .post(`https://discer.herokuapp.com/api/course`, newCourse)
+        .then((res) => {
+          console.log('profileUpdate call res', res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      navigate('/home');
+    }
+  };
   return (
     <div>
       <h1>Add Course</h1>
+      <label>Course Name:</label>
+      <input
+        onChange={(e) => {
+          setCourseName(e.target.value);
+        }}
+        type='text'
+        name='courseName'
+      />
+      {Object.keys(nameErr).map((key) => {
+        return <p style={{ color: 'red' }}>{nameErr[key]}</p>;
+      })}
       <div>
         <img
           src={
@@ -132,32 +137,45 @@ const AddCourse = () => {
           }}
         />
         <button onClick={uploadImage}>Upload Image</button>
-        <form onSubmit={console.log('hi')}>
+        <form onSubmit={handleSubmit}>
           <div>
-            <label>Phone Number</label>
+            <label>Course Address:</label>
             <input
-              // onChange={(e) => setPhoneState(e.target.value)}
-              onChange={handleChange}
-              placeholder='555-555-5555'
-              type='tel'
-              name='phone'
+              onChange={(e) => setCourseAddress(e.target.value)}
+              type='text'
+              name='courseAddress'
             />
-            {Object.keys(phoneErr).map((key) => {
-              return <p style={{ color: 'red' }}>{phoneErr[key]}</p>;
+            {Object.keys(addressErr).map((key) => {
+              return <p style={{ color: 'red' }}>{addressErr[key]}</p>;
             })}
-            <label>Skill Level</label>
+            <label>Course City:</label>
+            <input
+              onChange={(e) => setCourseCity(e.target.value)}
+              type='text'
+              name='courseCity'
+            />
+            {Object.keys(cityErr).map((key) => {
+              return <p style={{ color: 'red' }}>{cityErr[key]}</p>;
+            })}
+            <label>City State:</label>
             <select
-              name='skill'
-              // onChange={(e) => setSkillState(e.target.value)}
-              onChange={handleChange}>
+              name='stateName'
+              onChange={(e) => setCourseState(e.target.value)}>
               <option value='skill'>Skill level</option>
               <option value='Beginner'>Beginner</option>
               <option value='Intermediate'>Intermediate</option>
               <option value='Pro'>Pro</option>
             </select>
-            {Object.keys(skillErr).map((key) => {
-              return <p style={{ color: 'red' }}>{skillErr[key]}</p>;
+            {Object.keys(stateErr).map((key) => {
+              return <p style={{ color: 'red' }}>{stateErr[key]}</p>;
             })}
+            <label>Course Description:</label>
+            <br />
+            <textarea
+              onChange={(e) => setCourseDescription(e.target.value)}
+              type='text'
+              name='courseDescription'
+            />
           </div>
           <button>Finish</button>
         </form>

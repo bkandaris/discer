@@ -20,6 +20,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<AddCourse />} />
+          <Route path='/home' element={<HomePage />} />
           {/* <Route path='/' element={<Landing />} /> */}
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
