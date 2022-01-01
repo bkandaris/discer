@@ -12,6 +12,7 @@ import HomePage from './pages/HomePage';
 import Landing from './components/Landing';
 import FinishProfile from './components/FinishProfile';
 import AddCourse from './components/AddCourse';
+import ViewCourses from './components/ViewCourses';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route path='/' element={<AddCourse />} />
+          <Route path='/' element={<ViewCourses />} />
+          <Route path='/addCourse' element={<AddCourse />} />
           <Route path='/home' element={<HomePage />} />
           {/* <Route path='/' element={<Landing />} /> */}
           <Route path='/login' element={<Login />} />

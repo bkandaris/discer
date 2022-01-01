@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router';
 const AddCourse = () => {
   const [imageSelected, setImageSelected] = useState(null);
   const [courseName, setCourseName] = useState('');
-  console.log('courseName State', courseName);
+
   const [courseAddress, setCourseAddress] = useState('');
   console.log('courseAddress State', courseAddress);
   const [courseState, setCourseState] = useState('');
