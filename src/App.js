@@ -13,6 +13,8 @@ import Landing from './components/Landing';
 import FinishProfile from './components/FinishProfile';
 import AddCourse from './components/AddCourse';
 import ViewCourses from './components/ViewCourses';
+import UpdateCourse from './components/UpdateCourse';
+import UpdateCourseCard from './components/UpdateCourseCard';
 
 function App() {
   return (
@@ -20,10 +22,11 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route path='/' element={<ViewCourses />} />
+          <Route path='/' element={<UpdateCourse />} />
+          <Route path='/viewcourses' element={<ViewCourses />} />
           <Route path='/addCourse' element={<AddCourse />} />
           <Route path='/home' element={<HomePage />} />
-          {/* <Route path='/' element={<Landing />} /> */}
+          <Route path='update/:courseId' element={<UpdateCourseCard />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/finishprofile' element={<FinishProfile />} />

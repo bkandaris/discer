@@ -7,9 +7,10 @@ const CourseCard = ({
   coursePicture,
   courseState,
   description,
+  _id,
 }) => {
   return (
-    <div>
+    <div id={_id}>
       <h3>{courseName}</h3>
       <div>
         <img src={coursePicture} alt='course' />
@@ -21,6 +22,7 @@ const CourseCard = ({
           {courseCity}, {courseState}
         </p>
       </div>
+      <button>Update Courses</button>
     </div>
   );
 };
