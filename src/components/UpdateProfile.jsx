@@ -57,7 +57,7 @@ const UpdateProfile = () => {
 
     return isValid;
   };
-
+// sets user info
   useEffect(() => {
     axios
       .get(`https://discer.herokuapp.com/api/user/find/${_id}`)
@@ -86,8 +86,6 @@ const UpdateProfile = () => {
         console.log(err);
       });
   };
-  console.log('profilePic', profilePic);
-  console.log('imageSelected', imageSelected);
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid = handleValidation();

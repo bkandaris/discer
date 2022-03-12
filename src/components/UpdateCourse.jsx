@@ -17,7 +17,7 @@ const UpdateCourse = () => {
         console.log(err);
       });
   }, []);
-  console.log(UpdateCourseCard);
+
 
   return (
     <div>
