@@ -22,6 +22,14 @@ const ChangeCourse = () => {
       });
   }, []);
 
+  const deleteCourse = () => {
+    axios
+      .delete(`https://discer.herokuapp.com/api/course/${params.courseId}`)
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
   if (!course) {
     return <h1>Loading...</h1>;
   }
@@ -44,8 +52,9 @@ const ChangeCourse = () => {
         <input type='text' placeholder={course.courseState} />
         <br />
         <label>Description: </label>
-        <input type='text' placeholder={course.description} />
+        <textarea type='text' placeholder={course.description} />
       </form>
+      <button onClick={deleteCourse}>Delete</button>
     </div>
   );
 };

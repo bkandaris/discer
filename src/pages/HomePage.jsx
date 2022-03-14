@@ -25,7 +25,7 @@ const HomePage = () => {
         </p>
         <button
           onClick={() => {
-            navigate(`/updateprofile/${_id}`);
+            navigate(`/updatecourse`);
           }}>
           Tester for update
         </button>
