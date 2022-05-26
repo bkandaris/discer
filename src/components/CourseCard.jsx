@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CourseCard = ({
   courseAddress,
@@ -7,10 +8,14 @@ const CourseCard = ({
   coursePicture,
   courseState,
   description,
-  _id,
+  courseId,
 }) => {
+  const navigate = useNavigate();
+
+  console.log('navigate', courseId);
+
   return (
-    <div id={_id}>
+    <div>
       <h3>{courseName}</h3>
       <div>
         <img src={coursePicture} alt='course' />
@@ -22,7 +27,9 @@ const CourseCard = ({
           {courseCity}, {courseState}
         </p>
       </div>
-      <button>Update Courses</button>
+      <Link to={`/update/${courseId}`}>
+        <p>Update Courses</p>
+      </Link>
     </div>
   );
 };

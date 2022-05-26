@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { registerUser } from '../redux/actions';
+import { registerUser } from '../../redux/actions';
 
 const Register = () => {
   const dispatch = useDispatch();

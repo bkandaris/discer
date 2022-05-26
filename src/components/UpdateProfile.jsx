@@ -29,7 +29,6 @@ const UpdateProfile = () => {
   const [skillErr, setSkillErr] = useState({});
 
   // email, phoneNumber, skill
-
   const handleValidation = () => {
     const phoneErr = {};
     const skillErr = {};

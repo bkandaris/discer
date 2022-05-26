@@ -10,12 +10,13 @@ const ViewCourses = () => {
       .get('https://discer.herokuapp.com/api/course')
       .then((res) => {
         setCourses(res.data);
+        console.log('courses', courses);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
+  console.log('courses on viewCourse', courses);
   return (
     <div>
       <h1>Course List</h1>
@@ -29,6 +30,7 @@ const ViewCourses = () => {
               courseState={course.courseState}
               description={course.description}
               coursePicture={course.coursePicture}
+              courseId={course._id}
             />
           );
         })}
