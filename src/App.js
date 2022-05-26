@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './components/LoginRegister/Login';
 import Register from './components/LoginRegister/Register';
-import Home from './pages/HomePage';
+// import Home from './pages/HomePage';
 import UpdateProfile from './components/UpdateProfile';
 import { PrivateRoute } from './auth/PrivateRoute';
 import HomePage from './pages/HomePage';
@@ -14,7 +14,7 @@ import FinishProfile from './components/FinishProfile';
 import AddCourse from './components/AddCourse';
 import ViewCourses from './components/ViewCourses';
 import UpdateCourse from './components/UpdateCourse';
-import UpdateCourseCard from './components/UpdateCourseCard';
+// import UpdateCourseCard from './components/UpdateCourseCard';
 import ChangeCourse from './components/ChangeCourse';
 
 function App() {

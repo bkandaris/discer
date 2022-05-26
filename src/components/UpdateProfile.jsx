@@ -95,7 +95,7 @@ const UpdateProfile = () => {
         skill: skillState,
         profilePicture: profilePic,
       };
-      console.log('user object', user);
+      
       dispatch(
         updateUser({
           username: username,

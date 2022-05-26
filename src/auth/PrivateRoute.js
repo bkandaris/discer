@@ -1,4 +1,4 @@
-import { Route, Navigate } from 'react-router';
+import { Navigate } from 'react-router';
 
 export function PrivateRoute({ children }) {
   const accessToken = localStorage.getItem('token');
