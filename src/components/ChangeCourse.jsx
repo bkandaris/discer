@@ -9,7 +9,7 @@ const ChangeCourse = () => {
   const [imageSelected, setImageSelected] = useState('');
   const navigate = useNavigate();
   const params = useParams();
-  // course info states
+  // course info state
   const [formState, setFormState] = useState({
     courseName: '',
     courseAddress: '',
@@ -18,18 +18,15 @@ const ChangeCourse = () => {
     description: '',
   });
 
-  console.log('formState', formState);
   // form error states
   const [nameErr, setNameErr] = useState({});
   const [addressErr, setAddressErr] = useState({});
   const [cityErr, setCityErr] = useState({});
   const [descErr, setDescErr] = useState({});
 
-  console.log('course in change course', course);
-
-  const handleChange = (event) => {
-    let value = event.target.value;
-    let name = event.target.name;
+  const handleChange = (e) => {
+    let value = e.target.value;
+    let name = e.target.name;
 
     setFormState((prevalue) => {
       return {
@@ -106,7 +103,7 @@ const ChangeCourse = () => {
   const updateCourse = (e) => {
     e.preventDefault();
     const isValid = handleValidation();
-    // add handle validation here
+    // handle validation here
     if (isValid) {
       const updatedCourse = {
         courseName: formState.courseName,
@@ -115,9 +112,7 @@ const ChangeCourse = () => {
         courseState: formState.courseState,
         description: formState.description,
       };
-      console.log('put reqqqq object', updatedCourse);
 
-      navigate('/updatecourse');
       axios
         .put(
           `https://discer.herokuapp.com/api/course/${params.courseId}`,
@@ -125,8 +120,10 @@ const ChangeCourse = () => {
         )
         .then((res) => {
           console.log(res);
+          navigate('/updatecourse');
         })
         .catch((err) => {
+          alert('Something went wrong');
           console.log(err);
         });
     }

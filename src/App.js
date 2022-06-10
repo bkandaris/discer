@@ -16,6 +16,7 @@ import ViewCourses from './components/ViewCourses';
 import UpdateCourse from './components/UpdateCourse';
 // import UpdateCourseCard from './components/UpdateCourseCard';
 import ChangeCourse from './components/ChangeCourse';
+import AddMeetup from './pages/AddMeetup';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/updatecourse' element={<UpdateCourse />} />
           <Route path='/viewcourses' element={<ViewCourses />} />
           <Route path='/addCourse' element={<AddCourse />} />
+          <Route path='/addMeetup' element={<AddMeetup />} />
           <Route path='/home' element={<HomePage />} />
           <Route path='update/:courseId' element={<ChangeCourse />} />
           <Route path='/login' element={<Login />} />

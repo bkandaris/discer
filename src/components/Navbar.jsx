@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router';
 
 const Navbar = () => {
   const [loggedIn, setIsLoggedIn] = useState(false);
-  const { isLoggedIn, username, _id, profilePicture } = useSelector(
+  const { isLoggedIn, username, profilePicture } = useSelector(
     (state) => state
   );
   const [user, setUser] = useState({
